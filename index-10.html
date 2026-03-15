@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Tharun Kilaru — Senior EDI Specialist and Developer. Healthcare HIPAA X12 EDI, automation, and integration. Based in Garden City, NY."/>
+<title>Tharun Kilaru — EDI Specialist & Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   RESET & ROOT
+   ============================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Inter',system-ui,sans-serif;
+  background:#FAFAF8;
+  color:#1A1A1A;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img { max-width:100%; display:block; }
+a { color:inherit; text-decoration:none; }
+button { font-family:inherit; cursor:pointer; border:none; background:none; }
+input, textarea { font-family:inherit; }
+ul { list-style:none; }
+
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+:root {
+  --bg:       #FAFAF8;
+  --white:    #FFFFFF;
+  --ink:      #1A1A1A;
+  --ink2:     #2E2E2E;
+  --muted:    #6B6B6B;
+  --muted2:   #9A9A9A;
+  --border:   #E4E0D8;
+  --border2:  #F0EDE8;
+  --surface:  #FFFFFF;
+  --surface2: #F5F3EF;
+  --accent:   #C2440C;
+  --accent-l: #E85A20;
+  --accent-bg:#FBF0EB;
+  --green:    #147A5E;
+  --green-bg: #EAF5F1;
+  --mono:     'JetBrains Mono', monospace;
+  --serif:    'Fraunces', Georgia, serif;
+  --sans:     'Inter', system-ui, sans-serif;
+  --radius:   8px;
+  --radius-l: 14px;
+  --shadow-s: 0 1px 4px rgba(0,0,0,.06);
+  --shadow-m: 0 4px 20px rgba(0,0,0,.08);
+  --shadow-l: 0 12px 40px rgba(0,0,0,.1);
+  --nav-h:    62px;
+  --max:      1080px;
+}
+
+/* ============================================================
+   PAGE TRANSITIONS
+   ============================================================ */
+.page { display:none; animation:fadeIn .25s ease; }
+.page.active { display:block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#navbar {
+  position:fixed; top:0; left:0; right:0; z-index:999;
+  height:var(--nav-h);
+  background:rgba(250,250,248,.92);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow .2s;
+}
+#navbar.scrolled { box-shadow:var(--shadow-s); }
+.nav-inner {
+  max-width:var(--max);
+  margin:0 auto;
+  height:100%;
+  padding:0 1.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-logo {
+  font-family:var(--serif);
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--ink);
+  cursor:pointer;
+  letter-spacing:-.01em;
+  user-select:none;
+}
+.nav-logo span { color:var(--accent); }
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:.25rem;
+}
+.nav-links li a, .nav-links li button {
+  font-size:.83rem;
+  font-weight:500;
+  color:var(--muted);
+  padding:.45rem .85rem;
+  border-radius:6px;
+  transition:color .15s, background .15s;
+  display:block;
+  letter-spacing:.01em;
+}
+.nav-links li a:hover, .nav-links li button:hover {
+  color:var(--ink);
+  background:var(--surface2);
+}
+.nav-links li a.active, .nav-links li button.active {
+  color:var(--ink);
+  font-weight:600;
+}
+.nav-hire {
+  font-size:.78rem !important;
+  font-weight:600 !important;
+  color:var(--white) !important;
+  background:var(--ink) !important;
+  padding:.45rem 1.1rem !important;
+  border-radius:6px !important;
+  letter-spacing:.01em !important;
+  transition:background .15s !important;
+}
+.nav-hire:hover { background:var(--accent) !important; }
+
+/* Hamburger */
+.nav-ham {
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  padding:6px;
+  border-radius:6px;
+}
+.nav-ham span { width:20px; height:2px; background:var(--ink); display:block; border-radius:2px; transition:all .2s; }
+.nav-ham.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.nav-ham.open span:nth-child(2) { opacity:0; }
+.nav-ham.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display:none;
+  position:fixed;
+  top:var(--nav-h);
+  left:0; right:0;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:1rem 1.5rem 1.5rem;
+  z-index:998;
+  box-shadow:var(--shadow-m);
+}
+.mobile-menu.open { display:block; }
+.mobile-menu li { margin-bottom:.25rem; }
+.mobile-menu li a, .mobile-menu li button {
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:.7rem .85rem;
+  font-size:.9rem;
+  font-weight:500;
+  color:var(--muted);
+  border-radius:6px;
+  transition:background .15s, color .15s;
+}
+.mobile-menu li a:hover, .mobile-menu li button:hover {
+  background:var(--surface2);
+  color:var(--ink);
+}
+.mobile-menu .m-hire {
+  display:block;
+  margin-top:.75rem;
+  padding:.75rem;
+  background:var(--ink);
+  color:var(--white) !important;
+  text-align:center;
+  border-radius:6px;
+  font-weight:600;
+  font-size:.88rem;
+}
+
+@media (max-width:680px) {
+  .nav-links { display:none; }
+  .nav-ham { display:flex; }
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.wrap { max-width:var(--max); margin:0 auto; padding:0 1.5rem; }
+.page-wrap { max-width:var(--max); margin:0 auto; padding:calc(var(--nav-h) + 3rem) 1.5rem 5rem; }
+.narrow { max-width:720px; margin:0 auto; }
+.section { padding:3.5rem 0; border-top:1px solid var(--border2); }
+.section:first-of-type { border-top:none; }
+
+.sec-eyebrow {
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin-bottom:1rem;
+}
+.sec-eyebrow::after { content:''; flex:1; height:1px; background:var(--border); }
+.sec-title {
+  font-family:var(--serif);
+  font-size:clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight:600;
+  letter-spacing:-.02em;
+  line-height:1.15;
+  color:var(--ink);
+  margin-bottom:1rem;
+}
+.sec-sub {
+  font-size:.97rem;
+  color:var(--muted);
+  line-height:1.75;
+  max-width:560px;
+}
+
+/* Tags */
+.tag {
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.03em;
+  background:var(--surface2);
+  color:var(--muted);
+  border:1px solid var(--border);
+  padding:.18rem .55rem;
+  border-radius:3px;
+}
+.tag.accent { background:var(--accent-bg); color:var(--accent); border-color:rgba(194,68,12,.2); }
+.tag.green  { background:var(--green-bg);  color:var(--green);  border-color:rgba(20,122,94,.2); }
+
+/* Buttons */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  font-size:.85rem;
+  font-weight:600;
+  padding:.7rem 1.4rem;
+  border-radius:6px;
+  transition:all .18s;
+  cursor:pointer;
+  letter-spacing:.01em;
+  border:none;
+}
+.btn-dark { background:var(--ink); color:var(--white); }
+.btn-dark:hover { background:#333; transform:translateY(-1px); box-shadow:var(--shadow-m); }
+.btn-outline { background:transparent; color:var(--ink); border:1.5px solid var(--border); }
+.btn-outline:hover { border-color:var(--ink); transform:translateY(-1px); }
+.btn-accent { background:var(--accent); color:var(--white); }
+.btn-accent:hover { background:var(--accent-l); transform:translateY(-1px); box-shadow:0 4px 16px rgba(194,68,12,.25); }
+.btn-sm { font-size:.78rem; padding:.5rem 1rem; }
+
+/* Callout */
+.callout {
+  background:var(--surface2);
+  border-left:3px solid var(--accent);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:1.1rem 1.4rem;
+  margin:2rem 0;
+}
+.callout-label {
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:.4rem;
+}
+.callout p { font-size:.9rem; color:var(--ink2); line-height:1.7; margin:0; }
+
+/* Code block */
+.code-block {
+  background:#1A1B26;
+  color:#A9B1D6;
+  font-family:var(--mono);
+  font-size:.78rem;
+  line-height:1.75;
+  padding:1.3rem 1.5rem;
+  border-radius:var(--radius);
+  overflow-x:auto;
+  margin:1.5rem 0;
+}
+.code-block .c { color:#565F89; }
+.code-block .k { color:#BB9AF7; }
+.code-block .s { color:#9ECE6A; }
+
+/* ============================================================
+   ██ HOME PAGE
+   ============================================================ */
+
+/* Hero */
+.hero {
+  padding:calc(var(--nav-h) + 4.5rem) 1.5rem 4rem;
+  max-width:var(--max);
+  margin:0 auto;
+}
+.hero-availability {
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  background:var(--green-bg);
+  border:1px solid rgba(20,122,94,.2);
+  color:var(--green);
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.06em;
+  padding:.32rem .8rem;
+  border-radius:50px;
+  margin-bottom:1.5rem;
+  user-select:none;
+}
+.avail-dot {
+  width:7px; height:7px;
+  border-radius:50%;
+  background:var(--green);
+  flex-shrink:0;
+  animation:pulse 2.5s ease infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow:0 0 0 0 rgba(20,122,94,.4); }
+  50%      { box-shadow:0 0 0 5px rgba(20,122,94,0); }
+}
+.hero h1 {
+  font-family:var(--serif);
+  font-size:clamp(2.4rem, 6vw, 4.2rem);
+  font-weight:700;
+  letter-spacing:-.03em;
+  line-height:1.08;
+  color:var(--ink);
+  margin-bottom:1.2rem;
+}
+.hero h1 em { font-style:italic; color:var(--accent); font-weight:600; }
+.hero-sub {
+  font-size:1.05rem;
+  color:var(--muted);
+  line-height:1.8;
+  max-width:520px;
+  margin-bottom:2.5rem;
+}
+.hero-actions { display:flex; gap:.75rem; flex-wrap:wrap; }
+
+/* Stats bar */
+.stats-bar {
+  background:var(--white);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:1.75rem 1.5rem;
+}
+.stats-inner {
+  max-width:var(--max);
+  margin:0 auto;
+  display:flex;
+  gap:3rem;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.stat-item { display:flex; flex-direction:column; gap:.2rem; }
+.stat-num {
+  font-family:var(--serif);
+  font-size:1.65rem;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:-.03em;
+  line-height:1;
+}
+.stat-num span { color:var(--accent); }
+.stat-lbl {
+  font-family:var(--mono);
+  font-size:.62rem;
+  color:var(--muted2);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.stats-divider { width:1px; height:36px; background:var(--border); }
+@media (max-width:540px) { .stats-divider { display:none; } }
+
+/* Skills grid */
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:var(--radius-l);
+  overflow:hidden;
+}
+.skill-card {
+  background:var(--white);
+  padding:1.6rem;
+  transition:background .15s;
+}
+.skill-card:hover { background:var(--surface2); }
+.skill-emoji { font-size:1.4rem; margin-bottom:.85rem; }
+.skill-name { font-size:.97rem; font-weight:700; color:var(--ink); margin-bottom:.4rem; }
+.skill-desc { font-size:.83rem; color:var(--muted); line-height:1.65; margin-bottom:.85rem; }
+.skill-tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+
+/* Experience timeline */
+.exp-list { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-l); overflow:hidden; }
+.exp-item { background:var(--white); padding:1.75rem; transition:background .15s; }
+.exp-item:hover { background:var(--surface2); }
+.exp-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:.2rem; }
+.exp-role { font-size:1rem; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
+.exp-date { font-family:var(--mono); font-size:.68rem; color:var(--muted2); white-space:nowrap; flex-shrink:0; letter-spacing:.04em; }
+.exp-company { font-family:var(--mono); font-size:.72rem; color:var(--accent); letter-spacing:.03em; margin-bottom:.85rem; }
+.exp-points { display:flex; flex-direction:column; gap:.35rem; }
+.exp-point { font-size:.85rem; color:var(--muted); line-height:1.65; display:flex; gap:.65rem; }
+.exp-point::before { content:'↳'; color:var(--accent); font-size:.78rem; flex-shrink:0; margin-top:.1rem; }
+
+/* Blog preview cards */
+.blog-preview { display:flex; flex-direction:column; gap:.75rem; }
+.bp-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.3rem 1.5rem;
+  cursor:pointer;
+  transition:box-shadow .18s, border-color .18s, transform .18s;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+}
+.bp-card:hover { box-shadow:var(--shadow-m); border-color:var(--ink); transform:translateX(3px); }
+.bp-card-left { flex:1; }
+.bp-card-meta { display:flex; align-items:center; gap:.65rem; margin-bottom:.5rem; }
+.bp-card-title { font-size:.95rem; font-weight:600; color:var(--ink); line-height:1.35; }
+.bp-card-excerpt { font-size:.82rem; color:var(--muted); line-height:1.6; margin-top:.35rem; }
+.bp-arrow { color:var(--muted2); font-size:.9rem; transition:transform .18s, color .18s; flex-shrink:0; }
+.bp-card:hover .bp-arrow { color:var(--ink); transform:translateX(4px); }
+
+/* ============================================================
+   ██ ABOUT PAGE
+   ============================================================ */
+.about-hero { padding-bottom:3rem; }
+.about-hero h1 {
+  font-family:var(--serif);
+  font-size:clamp(2rem, 5vw, 3.2rem);
+  font-weight:600;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  margin-bottom:1rem;
+}
+.about-hero h1 em { color:var(--accent); font-style:italic; }
+.about-hero p { font-size:1rem; color:var(--muted); line-height:1.85; }
+
+.timeline { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-l); overflow:hidden; margin-top:1.5rem; }
+.tl-item { background:var(--white); padding:1.6rem; display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:start; }
+.tl-role { font-size:.97rem; font-weight:700; color:var(--ink); margin-bottom:.2rem; }
+.tl-company { font-family:var(--mono); font-size:.72rem; color:var(--accent); letter-spacing:.03em; margin-bottom:.75rem; }
+.tl-points { display:flex; flex-direction:column; gap:.35rem; }
+.tl-point { font-size:.84rem; color:var(--muted); line-height:1.65; display:flex; gap:.6rem; }
+.tl-point::before { content:'→'; color:var(--accent); font-size:.75rem; flex-shrink:0; margin-top:.12rem; }
+.tl-date { font-family:var(--mono); font-size:.68rem; color:var(--muted2); white-space:nowrap; letter-spacing:.04em; }
+
+.about-skills-wrap { display:flex; flex-wrap:wrap; gap:.4rem; }
+.about-skill-chip {
+  font-family:var(--mono);
+  font-size:.7rem;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  color:var(--ink2);
+  padding:.3rem .75rem;
+  border-radius:50px;
+  letter-spacing:.02em;
+}
+
+.edu-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.4rem;
+  display:flex;
+  align-items:start;
+  gap:1rem;
+}
+.edu-icon {
+  width:42px; height:42px;
+  border-radius:var(--radius);
+  background:var(--ink);
+  color:var(--white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.1rem;
+  flex-shrink:0;
+}
+.edu-degree { font-size:.97rem; font-weight:700; color:var(--ink); margin-bottom:.2rem; }
+.edu-school { font-family:var(--mono); font-size:.72rem; color:var(--accent); letter-spacing:.03em; }
+
+.values-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-l); overflow:hidden; }
+@media (max-width:540px) { .values-grid { grid-template-columns:1fr; } }
+.value-card { background:var(--white); padding:1.5rem; }
+.value-title { font-size:.9rem; font-weight:700; color:var(--ink); margin-bottom:.4rem; display:flex; align-items:center; gap:.5rem; }
+.value-desc { font-size:.82rem; color:var(--muted); line-height:1.65; }
+
+/* ============================================================
+   ██ BLOG PAGE
+   ============================================================ */
+.blog-hero { padding-bottom:2.5rem; }
+.blog-hero h1 {
+  font-family:var(--serif);
+  font-size:clamp(1.9rem, 4.5vw, 2.8rem);
+  font-weight:600;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  margin-bottom:.8rem;
+}
+.blog-hero h1 em { color:var(--accent); font-style:italic; }
+
+.blog-grid { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-l); overflow:hidden; }
+.blog-card {
+  background:var(--white);
+  padding:1.6rem 1.75rem;
+  cursor:pointer;
+  transition:background .15s;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:2rem;
+}
+.blog-card:hover { background:var(--surface2); }
+.blog-card-left { flex:1; }
+.blog-card-meta { display:flex; align-items:center; gap:.65rem; margin-bottom:.6rem; flex-wrap:wrap; }
+.blog-card-title { font-family:var(--serif); font-size:1.1rem; font-weight:600; color:var(--ink); line-height:1.25; margin-bottom:.5rem; letter-spacing:-.01em; }
+.blog-card-excerpt { font-size:.84rem; color:var(--muted); line-height:1.7; }
+.blog-card-read { font-family:var(--mono); font-size:.72rem; color:var(--accent); margin-top:.75rem; display:flex; align-items:center; gap:.35rem; }
+.blog-card-arrow { font-size:.9rem; color:var(--muted2); transition:transform .18s; flex-shrink:0; }
+.blog-card:hover .blog-card-arrow { transform:translateX(5px); }
+@media (max-width:540px) { .blog-card { flex-direction:column; } }
+
+/* Article reader */
+#article-reader { display:none; }
+#article-reader.open { display:block; }
+.reader-back {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-family:var(--mono);
+  font-size:.75rem;
+  color:var(--muted);
+  cursor:pointer;
+  padding:.4rem .75rem;
+  border-radius:5px;
+  border:1px solid var(--border);
+  transition:all .15s;
+  margin-bottom:2.5rem;
+  background:var(--white);
+}
+.reader-back:hover { color:var(--ink); border-color:var(--ink); }
+.reader-kicker { font-family:var(--mono); font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:.9rem; }
+.reader h1 {
+  font-family:var(--serif);
+  font-size:clamp(1.7rem, 4vw, 2.5rem);
+  font-weight:600;
+  letter-spacing:-.03em;
+  line-height:1.12;
+  margin-bottom:1rem;
+  color:var(--ink);
+}
+.reader-lead {
+  font-size:1.05rem;
+  line-height:1.85;
+  color:var(--muted);
+  border-left:2.5px solid var(--accent);
+  padding-left:1.2rem;
+  margin:1.5rem 0;
+}
+.reader-meta {
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--muted2);
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  padding-bottom:1.75rem;
+  border-bottom:1px solid var(--border);
+  margin-bottom:2.5rem;
+  flex-wrap:wrap;
+}
+.reader-meta span.dot { width:3px; height:3px; border-radius:50%; background:var(--border); display:inline-block; }
+.reader h2 { font-family:var(--serif); font-size:1.45rem; font-weight:600; color:var(--ink); margin:2.5rem 0 .85rem; letter-spacing:-.02em; line-height:1.2; }
+.reader h3 { font-family:var(--serif); font-size:1.1rem; font-weight:600; color:var(--ink); margin:2rem 0 .6rem; }
+.reader p { font-size:.97rem; line-height:1.9; color:var(--ink2); margin-bottom:1.3rem; }
+.reader ul, .reader ol { padding-left:1.4rem; margin-bottom:1.3rem; }
+.reader li { font-size:.95rem; line-height:1.8; color:var(--ink2); margin-bottom:.35rem; }
+.reader strong { color:var(--ink); font-weight:700; }
+.reader-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); }
+.reader-author {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.4rem;
+  display:flex;
+  gap:1rem;
+  align-items:flex-start;
+  margin-top:2rem;
+}
+.reader-av {
+  width:44px; height:44px;
+  border-radius:50%;
+  background:var(--ink);
+  color:var(--white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:.95rem;
+  flex-shrink:0;
+  letter-spacing:-.01em;
+}
+.reader-av-name { font-size:.92rem; font-weight:700; color:var(--ink); margin-bottom:.2rem; }
+.reader-av-bio { font-size:.8rem; color:var(--muted); line-height:1.6; }
+
+/* Progress bar */
+#read-progress { position:fixed; top:0; left:0; height:2px; background:var(--accent); z-index:1001; width:0; transition:width .05s linear; }
+
+/* ============================================================
+   ██ CONTACT PAGE
+   ============================================================ */
+.contact-hero { padding-bottom:2.5rem; }
+.contact-hero h1 {
+  font-family:var(--serif);
+  font-size:clamp(1.9rem, 4.5vw, 2.8rem);
+  font-weight:600;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  margin-bottom:.8rem;
+}
+.contact-hero h1 em { color:var(--accent); font-style:italic; }
+.contact-hero p { font-size:.97rem; color:var(--muted); line-height:1.8; max-width:500px; }
+
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
+@media (max-width:680px) { .contact-grid { grid-template-columns:1fr; } }
+
+.contact-links { display:flex; flex-direction:column; gap:.65rem; }
+.c-link {
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:1.1rem 1.3rem;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  text-decoration:none;
+  color:var(--ink);
+  transition:border-color .15s, box-shadow .15s;
+}
+.c-link:hover { border-color:var(--ink); box-shadow:var(--shadow-s); }
+.c-link-icon { font-size:1.1rem; width:28px; text-align:center; flex-shrink:0; }
+.c-link-label { font-family:var(--mono); font-size:.62rem; color:var(--muted2); letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:.15rem; }
+.c-link-value { font-size:.88rem; font-weight:600; color:var(--ink); }
+
+.contact-form-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-l);
+  padding:2rem;
+}
+.form-title { font-size:1rem; font-weight:700; color:var(--ink); margin-bottom:1.5rem; }
+.form-group { margin-bottom:1.1rem; }
+.form-label { display:block; font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:.45rem; }
+.form-input, .form-textarea {
+  width:100%;
+  padding:.75rem .9rem;
+  background:var(--surface2);
+  border:1.5px solid var(--border);
+  border-radius:6px;
+  font-size:.9rem;
+  color:var(--ink);
+  font-family:var(--sans);
+  transition:border-color .15s, background .15s;
+  outline:none;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color:var(--ink);
+  background:var(--white);
+}
+.form-input::placeholder, .form-textarea::placeholder { color:var(--muted2); }
+.form-textarea { resize:vertical; min-height:120px; line-height:1.65; }
+.form-success {
+  display:none;
+  background:var(--green-bg);
+  border:1px solid rgba(20,122,94,.2);
+  border-radius:var(--radius);
+  padding:1rem 1.2rem;
+  font-size:.88rem;
+  color:var(--green);
+  margin-top:1rem;
+  align-items:center;
+  gap:.6rem;
+  font-weight:600;
+}
+.form-success.show { display:flex; }
+.form-note { font-size:.78rem; color:var(--muted2); margin-top:.6rem; line-height:1.6; }
+
+/* ============================================================
+   ██ FOOTER
+   ============================================================ */
+footer {
+  background:var(--ink);
+  color:rgba(255,255,255,.45);
+  padding:3rem 1.5rem;
+}
+.footer-inner {
+  max-width:var(--max);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;
+  align-items:start;
+}
+@media (max-width:540px) { .footer-inner { grid-template-columns:1fr; } }
+.footer-logo { font-family:var(--serif); font-size:1.15rem; font-weight:700; color:var(--white); margin-bottom:.4rem; }
+.footer-logo span { color:var(--accent-l); }
+.footer-tagline { font-size:.82rem; color:rgba(255,255,255,.35); line-height:1.6; max-width:340px; }
+.footer-links { display:flex; flex-direction:column; gap:.4rem; align-items:flex-end; }
+@media (max-width:540px) { .footer-links { align-items:flex-start; } }
+.footer-links a { font-family:var(--mono); font-size:.72rem; color:rgba(255,255,255,.45); letter-spacing:.04em; transition:color .15s; cursor:pointer; }
+.footer-links a:hover { color:var(--accent-l); }
+.footer-bottom { max-width:var(--max); margin:.25rem auto 0; padding-top:1.75rem; border-top:1px solid rgba(255,255,255,.08); font-family:var(--mono); font-size:.65rem; color:rgba(255,255,255,.25); letter-spacing:.06em; display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+
+</style>
+</head>
+<body>
+
+<!-- Read progress bar -->
+<div id="read-progress"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <span class="nav-logo" onclick="goTo('home')">Tharun Kilaru</span>
+
+    <ul class="nav-links">
+      <li><button class="nav-btn active" onclick="goTo('home')" id="nav-home">Home</button></li>
+      <li><button class="nav-btn" onclick="goTo('about')" id="nav-about">About</button></li>
+      <li><button class="nav-btn" onclick="goTo('blog')" id="nav-blog">Blog</button></li>
+      <li><button class="nav-btn" onclick="goTo('contact')" id="nav-contact">Contact</button></li>
+      <li><button class="nav-hire" onclick="goTo('contact')">Hire Me</button></li>
+    </ul>
+
+    <button class="nav-ham" id="ham-btn" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><button onclick="goTo('home')">Home</button></li>
+    <li><button onclick="goTo('about')">About</button></li>
+    <li><button onclick="goTo('blog')">Blog</button></li>
+    <li><button onclick="goTo('contact')">Contact</button></li>
+  </ul>
+  <button class="m-hire" onclick="goTo('contact')">Hire Me →</button>
+</div>
+
+<!-- ============================================================
+     HOME PAGE
+     ============================================================ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-availability">
+      <span class="avail-dot"></span>
+      Open to Opportunities &nbsp;·&nbsp; Garden City, NY
+    </div>
+    <h1>
+      Senior EDI<br/>
+      <em>Specialist</em> &amp;<br/>
+      Developer
+    </h1>
+    <p class="hero-sub">
+      I build the data pipelines that keep healthcare running. 4+ years automating HIPAA X12 workflows, processing 834s and 837s, and making EDI less painful for everyone involved.
+    </p>
+    <div class="hero-actions">
+      <button class="btn btn-dark" onclick="goTo('contact')">Get In Touch →</button>
+      <button class="btn btn-outline" onclick="goTo('blog')">Read My Blog</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num">4<span>+</span></span>
+        <span class="stat-lbl">Years Experience</span>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">10<span>+</span></span>
+        <span class="stat-lbl">Automations Built</span>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">5<span>+</span></span>
+        <span class="stat-lbl">Companies</span>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">834<span>/</span>837</span>
+        <span class="stat-lbl">Core Specialties</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- What I Do -->
+  <div class="wrap">
+    <div class="section">
+      <div class="sec-eyebrow">What I Work With</div>
+      <h2 class="sec-title">Skills &amp; Expertise</h2>
+      <p class="sec-sub" style="margin-bottom:2rem;">Covering the full spectrum of healthcare EDI — from reading raw X12 segments to building the automations that process them.</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-emoji">⚕️</div>
+          <div class="skill-name">HIPAA X12 EDI</div>
+          <div class="skill-desc">Deep expertise in healthcare transaction sets — benefit enrollment, claims, eligibility, remittance. I've worked every major transaction at production scale.</div>
+          <div class="skill-tags">
+            <span class="tag accent">834</span><span class="tag accent">837P/I</span><span class="tag accent">835</span><span class="tag">270/271</span><span class="tag">999</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">⚡</div>
+          <div class="skill-name">EDI Automation</div>
+          <div class="skill-desc">Building RoboTask workflows that handle scheduled SFTP downloads, dynamic file renaming, FTP uploads, and confirmation emails — replacing manual steps with reliable automation.</div>
+          <div class="skill-tags">
+            <span class="tag accent">RoboTask</span><span class="tag">SFTP</span><span class="tag">FTP</span><span class="tag">Scheduling</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">💻</div>
+          <div class="skill-name">C# Development</div>
+          <div class="skill-desc">Custom EDI preprocessing tools — 834 transformers with CuraeChoice mode, PGP decryptors using BouncyCastle, CLI utilities that plug cleanly into automation pipelines.</div>
+          <div class="skill-tags">
+            <span class="tag accent">C#</span><span class="tag">.NET</span><span class="tag">BouncyCastle</span><span class="tag">CLI Tools</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">🔗</div>
+          <div class="skill-name">Integration Platforms</div>
+          <div class="skill-desc">Configuring and managing EDI translation and integration in enterprise environments. Mapping, testing, trading partner onboarding, and production support.</div>
+          <div class="skill-tags">
+            <span class="tag accent">Cleo CIC</span><span class="tag">IBM Sterling</span><span class="tag">AS2</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">🏥</div>
+          <div class="skill-name">TPA Operations</div>
+          <div class="skill-desc">End-to-end benefits administration in a TPA environment — eligibility management, claims routing, carrier connectivity, and trading partner onboarding from scratch.</div>
+          <div class="skill-tags">
+            <span class="tag accent">TPA</span><span class="tag">Benefits Admin</span><span class="tag">Carrier EDI</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">🔐</div>
+          <div class="skill-name">Security &amp; Compliance</div>
+          <div class="skill-desc">HIPAA-compliant file handling including end-to-end PGP encryption/decryption, secure SFTP/FTP transfer protocols, and audit trail maintenance.</div>
+          <div class="skill-tags">
+            <span class="tag accent">PGP</span><span class="tag">HIPAA</span><span class="tag">Encryption</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience preview -->
+    <div class="section">
+      <div class="sec-eyebrow">Experience</div>
+      <h2 class="sec-title">Where I've Worked</h2>
+      <p class="sec-sub" style="margin-bottom:2rem;">4+ years across healthcare, retail, and logistics — each role adding a new dimension to my EDI knowledge.</p>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-top">
+            <div>
+              <div class="exp-role">Senior EDI Specialist / Developer</div>
+              <div class="exp-company">International Benefits Administrators (IBA) · Garden City, NY</div>
+            </div>
+            <div class="exp-date">2022 — Present</div>
+          </div>
+          <div class="exp-points">
+            <div class="exp-point">Built 10+ RoboTask automations for SFTP/FTP file workflows, eliminating manual deliveries across multiple clients</div>
+            <div class="exp-point">Developed C# 834 preprocessor with CuraeChoice mode, REF*ZZ removal, and DTP*348 handling</div>
+            <div class="exp-point">Built PGP file decryption pipeline using BouncyCastle, integrated into RoboTask with CLI arguments</div>
+            <div class="exp-point">Primary owner of all EDI trading partner onboarding, production support, and carrier connectivity</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-top">
+            <div>
+              <div class="exp-role">EDI Analyst</div>
+              <div class="exp-company">UnitedHealth Group (UHG)</div>
+            </div>
+            <div class="exp-date">2021 — 2022</div>
+          </div>
+          <div class="exp-points">
+            <div class="exp-point">Managed high-volume 837 claims processing in Cleo Integration Cloud environment</div>
+            <div class="exp-point">Reduced EDI incident resolution time by 30% through proactive monitoring and alerting improvements</div>
+            <div class="exp-point">Handled trading partner onboarding across professional and institutional claim types (837P, 837I)</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-top">
+            <div>
+              <div class="exp-role">EDI / Logistics Analyst</div>
+              <div class="exp-company">PetSmart &amp; APL Logistics</div>
+            </div>
+            <div class="exp-date">2020 — 2021</div>
+          </div>
+          <div class="exp-points">
+            <div class="exp-point">Managed retail and logistics EDI transaction sets: 850 (PO), 855 (POA), 856 (ASN), 810 (Invoice)</div>
+            <div class="exp-point">Supported trading partner integrations and EDI mapping configuration</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn btn-outline btn-sm" onclick="goTo('about')">Full Background →</button>
+      </div>
+    </div>
+
+    <!-- Blog preview -->
+    <div class="section">
+      <div class="sec-eyebrow">Writing</div>
+      <h2 class="sec-title">Recent Posts</h2>
+      <p class="sec-sub" style="margin-bottom:2rem;">Real situations from real work. No tutorials copied from spec documents.</p>
+      <div class="blog-preview">
+        <div class="bp-card" onclick="openPost('art5')">
+          <div class="bp-card-left">
+            <div class="bp-card-meta">
+              <span class="tag accent">Newest</span>
+              <span class="tag">Automation</span>
+              <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Mar 2026</span>
+            </div>
+            <div class="bp-card-title">How I Use RoboTask to Automate EDI File Workflows</div>
+            <div class="bp-card-excerpt">Manual SFTP downloads, date-stamped renames, FTP uploads — I was doing all of it by hand. Here's how I automated it and what broke along the way.</div>
+          </div>
+          <span class="bp-arrow">→</span>
+        </div>
+        <div class="bp-card" onclick="openPost('art4')">
+          <div class="bp-card-left">
+            <div class="bp-card-meta">
+              <span class="tag">HIPAA</span>
+              <span class="tag">834</span>
+              <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Dec 2025</span>
+            </div>
+            <div class="bp-card-title">The Complete Guide to 834 Benefit Enrollment Files</div>
+            <div class="bp-card-excerpt">Every loop, every segment, every common mistake — written after four years of working with these files daily.</div>
+          </div>
+          <span class="bp-arrow">→</span>
+        </div>
+        <div class="bp-card" onclick="openPost('art3')">
+          <div class="bp-card-left">
+            <div class="bp-card-meta">
+              <span class="tag">Production</span>
+              <span class="tag">UHG</span>
+              <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Oct 2025</span>
+            </div>
+            <div class="bp-card-title">How I Cut EDI Incident Resolution Time by 30% at UHG</div>
+            <div class="bp-card-excerpt">A specific Monday morning that forced us to finally fix our monitoring. Real numbers, real story.</div>
+          </div>
+          <span class="bp-arrow">→</span>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn btn-outline btn-sm" onclick="goTo('blog')">All Posts →</button>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Tharun Kilaru</div>
+        <div class="footer-tagline">Senior EDI Specialist &amp; Developer. Building healthcare data pipelines that actually work.</div>
+      </div>
+      <div class="footer-links">
+        <a onclick="goTo('home')">Home</a>
+        <a onclick="goTo('about')">About</a>
+        <a onclick="goTo('blog')">Blog</a>
+        <a onclick="goTo('contact')">Contact</a>
+        <a href="https://linkedin.com/in/tharunkilaruu" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tharun Kilaru · Garden City, NY</span>
+      <span>kilarutharun@gmail.com</span>
+    </div>
+  </footer>
+
+</div><!-- /home -->
+
+
+<!-- ============================================================
+     ABOUT PAGE
+     ============================================================ -->
+<div id="page-about" class="page">
+  <div class="page-wrap">
+    <div class="narrow">
+
+      <div class="about-hero">
+        <div class="sec-eyebrow">About</div>
+        <h1 class="about-hero" style="font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem;">
+          I make healthcare data<br/><em style="color:var(--accent);font-style:italic;">move correctly.</em>
+        </h1>
+        <p style="font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:1rem;">
+          I'm Tharun Kilaru — a Senior EDI Specialist and developer at International Benefits Administrators (IBA), a Third Party Administrator in Garden City, NY. For 4+ years I've been building and maintaining the data pipelines that connect employers, carriers, and benefit administrators in the US healthcare system.
+        </p>
+        <p style="font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:1rem;">
+          Before IBA, I worked at UnitedHealth Group processing high-volume 837 claims, and before that in retail and logistics EDI at PetSmart and APL Logistics. That breadth means I understand EDI as a universal data standard, not just one industry's quirk.
+        </p>
+        <p style="font-size:1rem;color:var(--muted);line-height:1.85;">
+          At IBA I'm essentially the entire EDI engineering team — I build the tools, write the automations, onboard trading partners, and fix things when they break. I write about that work publicly because most EDI resources are too shallow or locked behind paywalls. These are working notes, made public.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <div class="sec-eyebrow">Experience</div>
+        <h2 class="sec-title">Work History</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div>
+              <div class="tl-role">Senior EDI Specialist / Developer</div>
+              <div class="tl-company">International Benefits Administrators (IBA) · Garden City, NY</div>
+              <div class="tl-points">
+                <div class="tl-point">Built 10+ RoboTask automations eliminating manual weekly file deliveries for multiple clients</div>
+                <div class="tl-point">Developed C# 834 Preprocessor: CuraeChoice mode, group/plan code translation, REF*ZZ removal, DTP*348 logic</div>
+                <div class="tl-point">Built PGP decryption pipeline (BouncyCastle + CLI) integrated into RoboTask with folder watch triggering</div>
+                <div class="tl-point">Designed post-upload verification logic for FTP tasks to eliminate silent failure scenarios</div>
+                <div class="tl-point">Primary owner of all EDI trading partner onboarding, carrier connectivity, and production support</div>
+              </div>
+            </div>
+            <div class="tl-date">2022 — Present</div>
+          </div>
+          <div class="tl-item">
+            <div>
+              <div class="tl-role">EDI Analyst</div>
+              <div class="tl-company">UnitedHealth Group (UHG)</div>
+              <div class="tl-points">
+                <div class="tl-point">Processed high-volume 837P and 837I claims through Cleo Integration Cloud</div>
+                <div class="tl-point">Reduced incident resolution time by 30% with proactive file pickup and 999 acknowledgement monitoring</div>
+                <div class="tl-point">Managed trading partner onboarding and ISA/GS configuration for professional and institutional claims</div>
+              </div>
+            </div>
+            <div class="tl-date">2021 — 2022</div>
+          </div>
+          <div class="tl-item">
+            <div>
+              <div class="tl-role">EDI / Logistics Analyst</div>
+              <div class="tl-company">PetSmart &amp; APL Logistics</div>
+              <div class="tl-points">
+                <div class="tl-point">Managed retail EDI: 850 Purchase Orders, 855 Acknowledgements, 856 Advance Ship Notices, 810 Invoices</div>
+                <div class="tl-point">Supported trading partner integrations and EDI mapping for logistics operations</div>
+              </div>
+            </div>
+            <div class="tl-date">2020 — 2021</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="sec-eyebrow">Education</div>
+        <h2 class="sec-title">Academic Background</h2>
+        <div class="edu-card">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-degree">Master of Science — Information Studies</div>
+            <div class="edu-school">Trine University</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="sec-eyebrow">Technical Skills</div>
+        <h2 class="sec-title">Full Stack of Tools</h2>
+        <div style="display:flex;flex-direction:column;gap:1.2rem;margin-top:.5rem;">
+          <div>
+            <div style="font-family:var(--mono);font-size:.68rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;">EDI &amp; HIPAA</div>
+            <div class="about-skills-wrap">
+              <span class="about-skill-chip">HIPAA X12 5010</span><span class="about-skill-chip">834 Enrollment</span><span class="about-skill-chip">837P/I/D Claims</span><span class="about-skill-chip">835 Remittance</span><span class="about-skill-chip">270/271 Eligibility</span><span class="about-skill-chip">999 Acknowledgement</span><span class="about-skill-chip">278 Prior Auth</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:.68rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;">Platforms &amp; Tools</div>
+            <div class="about-skills-wrap">
+              <span class="about-skill-chip">Cleo CIC</span><span class="about-skill-chip">IBM Sterling</span><span class="about-skill-chip">RoboTask</span><span class="about-skill-chip">AS2</span><span class="about-skill-chip">SFTP / FTP</span><span class="about-skill-chip">PGP Encryption</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:.68rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;">Development</div>
+            <div class="about-skills-wrap">
+              <span class="about-skill-chip">C#</span><span class="about-skill-chip">.NET</span><span class="about-skill-chip">BouncyCastle</span><span class="about-skill-chip">CLI Development</span><span class="about-skill-chip">SQL</span><span class="about-skill-chip">HTML / CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="section">
+        <div class="sec-eyebrow">How I Work</div>
+        <h2 class="sec-title">Approach &amp; Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-title">⚙️ Automate the repetitive</div>
+            <div class="value-desc">Any task I do more than twice on a fixed schedule gets automated. Manual work introduces error. Automation doesn't forget, doesn't typo, doesn't miss a Friday.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">🔍 Fail loudly</div>
+            <div class="value-desc">A silent failure is worse than no automation at all. Every system I build has error alerting. If something breaks, I know within minutes, not days.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">📝 Document everything</div>
+            <div class="value-desc">A task I built six months ago looks foreign when I open it cold. Comments, notes, and runbooks aren't overhead — they're how you work at speed sustainably.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">🌐 Stay ahead of the spec</div>
+            <div class="value-desc">Healthcare interoperability is changing — FHIR, CMS mandates, prior auth modernization. I learn the new while mastering the existing. Both matter.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem;">
+        <button class="btn btn-dark" onclick="goTo('contact')">Work With Me →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Tharun Kilaru</div>
+        <div class="footer-tagline">Senior EDI Specialist &amp; Developer. Building healthcare data pipelines that actually work.</div>
+      </div>
+      <div class="footer-links">
+        <a onclick="goTo('home')">Home</a>
+        <a onclick="goTo('about')">About</a>
+        <a onclick="goTo('blog')">Blog</a>
+        <a onclick="goTo('contact')">Contact</a>
+        <a href="https://linkedin.com/in/tharunkilaruu" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tharun Kilaru · Garden City, NY</span>
+      <span>kilarutharun@gmail.com</span>
+    </div>
+  </footer>
+</div><!-- /about -->
+
+
+<!-- ============================================================
+     BLOG PAGE
+     ============================================================ -->
+<div id="page-blog" class="page">
+  <div class="page-wrap">
+
+    <!-- Blog listing -->
+    <div id="blog-listing">
+      <div class="narrow">
+        <div class="blog-hero">
+          <div class="sec-eyebrow">Writing</div>
+          <h1>EDI notes,<br/><em>made public.</em></h1>
+          <p style="font-size:.97rem;color:var(--muted);line-height:1.8;max-width:460px;margin-top:.75rem;">Real situations from real work. No tutorials copied from spec documents — just what I actually run into.</p>
+        </div>
+
+        <div class="blog-grid">
+
+          <div class="blog-card" onclick="openPost('art5')">
+            <div class="blog-card-left">
+              <div class="blog-card-meta">
+                <span class="tag accent">Newest</span>
+                <span class="tag">Automation</span>
+                <span class="tag">Real Story</span>
+                <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Mar 2026 · 9 min</span>
+              </div>
+              <div class="blog-card-title">How I Use RoboTask to Automate EDI File Workflows</div>
+              <div class="blog-card-excerpt">Manual SFTP downloads, date-stamped renames, FTP uploads — I was doing all of it by hand until a year ago. Here's how I automated it, what broke, and what I'd do differently starting out.</div>
+              <div class="blog-card-read">Read post →</div>
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </div>
+
+          <div class="blog-card" onclick="openPost('art4')">
+            <div class="blog-card-left">
+              <div class="blog-card-meta">
+                <span class="tag">HIPAA</span>
+                <span class="tag">834</span>
+                <span class="tag">Beginner</span>
+                <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Dec 2025 · 12 min</span>
+              </div>
+              <div class="blog-card-title">The Complete Guide to 834 Benefit Enrollment Files</div>
+              <div class="blog-card-excerpt">Every loop, every segment, every common mistake — written after four years of working with these files daily. Everything I wish someone had handed me on day one.</div>
+              <div class="blog-card-read">Read post →</div>
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </div>
+
+          <div class="blog-card" onclick="openPost('art3')">
+            <div class="blog-card-left">
+              <div class="blog-card-meta">
+                <span class="tag">Production</span>
+                <span class="tag">UHG</span>
+                <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Oct 2025 · 7 min</span>
+              </div>
+              <div class="blog-card-title">How I Cut EDI Incident Resolution Time by 30% at UHG</div>
+              <div class="blog-card-excerpt">A specific Monday morning that forced us to fix our monitoring. Real numbers, what I built, and the one rule I use to decide what deserves an alert.</div>
+              <div class="blog-card-read">Read post →</div>
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </div>
+
+          <div class="blog-card" onclick="openPost('art2')">
+            <div class="blog-card-left">
+              <div class="blog-card-meta">
+                <span class="tag">Opinion</span>
+                <span class="tag">FHIR</span>
+                <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Jun 2025 · 8 min</span>
+              </div>
+              <div class="blog-card-title">Will APIs Replace EDI? Honestly, I'm Tired of This Question</div>
+              <div class="blog-card-excerpt">I've heard "EDI is dying" at three different events. Each time, the people saying it aren't the ones processing claims at scale. Here's my actual take.</div>
+              <div class="blog-card-read">Read post →</div>
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </div>
+
+          <div class="blog-card" onclick="openPost('art1')">
+            <div class="blog-card-left">
+              <div class="blog-card-meta">
+                <span class="tag">Claims</span>
+                <span class="tag">837</span>
+                <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Jan 2025 · 6 min</span>
+              </div>
+              <div class="blog-card-title">837P vs 837I vs 837D — The Difference Actually Matters</div>
+              <div class="blog-card-excerpt">Three transaction sets, one number. I kept confusing them my first year. Here's the breakdown that finally made it click for me.</div>
+              <div class="blog-card-read">Read post →</div>
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </div>
+
+          <div class="blog-card" onclick="openPost('art0')">
+            <div class="blog-card-left">
+              <div class="blog-card-meta">
+                <span class="tag">Intro</span>
+                <span class="tag">EDI 101</span>
+                <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);">Sep 2024 · 4 min</span>
+              </div>
+              <div class="blog-card-title">Why I'm Writing About EDI (and What EDI Even Is)</div>
+              <div class="blog-card-excerpt">First post. A quick explanation of EDI for anyone who's asked me to explain my job at a family dinner.</div>
+              <div class="blog-card-read">Read post →</div>
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Article reader (hidden until post clicked) -->
+    <div id="article-reader">
+      <div class="narrow">
+        <button class="reader-back" onclick="closePost()">← Back to all posts</button>
+        <div class="reader" id="reader-content"></div>
+      </div>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Tharun Kilaru</div>
+        <div class="footer-tagline">Senior EDI Specialist &amp; Developer. Building healthcare data pipelines that actually work.</div>
+      </div>
+      <div class="footer-links">
+        <a onclick="goTo('home')">Home</a>
+        <a onclick="goTo('about')">About</a>
+        <a onclick="closePost();goTo('blog')">Blog</a>
+        <a onclick="goTo('contact')">Contact</a>
+        <a href="https://linkedin.com/in/tharunkilaruu" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tharun Kilaru · Garden City, NY</span>
+      <span>kilarutharun@gmail.com</span>
+    </div>
+  </footer>
+</div><!-- /blog -->
+
+
+<!-- ============================================================
+     CONTACT PAGE
+     ============================================================ -->
+<div id="page-contact" class="page">
+  <div class="page-wrap">
+    <div class="narrow">
+
+      <div class="contact-hero">
+        <div class="sec-eyebrow">Contact</div>
+        <h1>Let's talk <em>EDI.</em></h1>
+        <p>Job opportunity, project, question about HIPAA X12, or just connecting with someone else in the industry — my inbox is open. I reply to every message.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Links -->
+        <div>
+          <div style="font-family:var(--mono);font-size:.68rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;">Find Me Here</div>
+          <div class="contact-links">
+            <a class="c-link" href="mailto:kilarutharun@gmail.com">
+              <span class="c-link-icon">✉️</span>
+              <div>
+                <span class="c-link-label">Email</span>
+                <span class="c-link-value">kilarutharun@gmail.com</span>
+              </div>
+            </a>
+            <a class="c-link" href="https://linkedin.com/in/tharunkilaruu" target="_blank">
+              <span class="c-link-icon">💼</span>
+              <div>
+                <span class="c-link-label">LinkedIn</span>
+                <span class="c-link-value">linkedin.com/in/tharunkilaruu</span>
+              </div>
+            </a>
+            <a class="c-link" href="https://tharun-kilaru-portfolio.vercel.app" target="_blank">
+              <span class="c-link-icon">🗂️</span>
+              <div>
+                <span class="c-link-label">Portfolio</span>
+                <span class="c-link-value">tharun-kilaru-portfolio.vercel.app</span>
+              </div>
+            </a>
+          </div>
+
+          <div style="margin-top:2rem;padding:1.2rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);">
+            <div style="font-family:var(--mono);font-size:.65rem;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem;"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;"></span>Currently Available</div>
+            <div style="font-size:.88rem;color:var(--muted);line-height:1.7;">Open to full-time EDI Specialist, Integration Developer, or Healthcare Data Engineer roles. Open to remote or hybrid in the NY/NJ area.</div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-card">
+          <div class="form-title">Send a Message</div>
+          <div class="form-group">
+            <label class="form-label" for="form-name">Your Name</label>
+            <input class="form-input" id="form-name" type="text" placeholder="Jane Smith" autocomplete="off"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="form-email">Email Address</label>
+            <input class="form-input" id="form-email" type="email" placeholder="jane@company.com" autocomplete="off"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="form-subject">Subject</label>
+            <input class="form-input" id="form-subject" type="text" placeholder="Job opportunity / Project / Question" autocomplete="off"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="form-msg">Message</label>
+            <textarea class="form-textarea" id="form-msg" placeholder="Tell me what's on your mind..."></textarea>
+          </div>
+          <button class="btn btn-dark" style="width:100%;justify-content:center;" onclick="submitForm()">Send Message →</button>
+          <div class="form-success" id="form-success">
+            ✓ &nbsp; Message received! I'll get back to you within 24 hours.
+          </div>
+          <p class="form-note">This form uses mailto — clicking Send will open your email client with the message pre-filled. Or just email me directly at kilarutharun@gmail.com.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Tharun Kilaru</div>
+        <div class="footer-tagline">Senior EDI Specialist &amp; Developer. Building healthcare data pipelines that actually work.</div>
+      </div>
+      <div class="footer-links">
+        <a onclick="goTo('home')">Home</a>
+        <a onclick="goTo('about')">About</a>
+        <a onclick="goTo('blog')">Blog</a>
+        <a onclick="goTo('contact')">Contact</a>
+        <a href="https://linkedin.com/in/tharunkilaruu" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tharun Kilaru · Garden City, NY</span>
+      <span>kilarutharun@gmail.com</span>
+    </div>
+  </footer>
+</div><!-- /contact -->
+
+
+<!-- ============================================================
+     ARTICLE DATA
+     ============================================================ -->
+<script>
+var articles = {
+
+art0: {
+  kicker:'Intro · Sep 2024',
+  title:'Why I\'m Writing About EDI (and What EDI Even Is)',
+  lead:'I\'ve been meaning to start writing for about a year. Every time someone asks me what I do at work, I fumble through an explanation. This is my attempt to do better than that.',
+  meta:['Tharun Kilaru','September 2024','4 min read'],
+  tags:['Intro','EDI 101','X12','Healthcare'],
+  content:`
+    <p>Okay, first post. I'm going to keep this short because I have a tendency to over-explain and I'd rather actually publish something than spend three weeks writing the perfect introduction.</p>
+    <p>EDI stands for Electronic Data Interchange. It's the system that healthcare companies — insurers, hospitals, pharmacies, TPAs like where I work — use to send structured data to each other. Enrollment files. Claims. Eligibility checks. Remittance. All of it travels as EDI.</p>
+    <p>The format looks like this:</p>
+    <div class="code-block">ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *240915*1200*^*00501*000000001*0*P*:~
+GS*BE*SENDER*RECEIVER*20240915*1200*1*X*005010X220A1~
+ST*834*0001~</div>
+    <p>I know. It's dense. The asterisks are delimiters. The tilde ends each segment. Every two or three letter code means something specific. Once you know the pattern it makes sense, but there's no shortcut through the initial confusion.</p>
+    <p>I've been doing this for a few years now. I work at a Third Party Administrator — we handle benefits administration on behalf of employers who self-insure. Most of what I do involves making sure enrollment data (who's covered, for what, starting when) gets formatted correctly and delivered to the right insurance carriers on time.</p>
+    <p>When that goes wrong, someone's insurance claim gets denied. The stakes are real, even if the file format looks like an alien wrote it.</p>
+    <p>I'll be writing here about the things I actually run into at work. Not tutorials copied from spec documents, but the actual situations: weird edge cases, the debugging process, automations I've built. If you work in EDI, maybe this is useful. If you're entering the field — stick around.</p>
+  `
+},
+
+art1: {
+  kicker:'Claims · Jan 2025',
+  title:'837P vs 837I vs 837D — The Difference Actually Matters',
+  lead:'I spent my first year using "837" as a catch-all term. That worked fine until it didn\'t. Here\'s the breakdown that finally made it click.',
+  meta:['Tharun Kilaru','January 2025','6 min read'],
+  tags:['837','Claims','HIPAA','X12'],
+  content:`
+    <p>When someone says "we need to set up 837 processing," the first question should be: which 837? There are three — and they're not interchangeable. They use different loops, different required segments, and route to different parts of a payer's adjudication system.</p>
+    <h2>837P — Professional</h2>
+    <p>The 837P covers professional services: office visits, outpatient procedures, anything billed by a physician or individual provider. The key identifier is claim type code <strong>B</strong> in the CLM05 element. The paper equivalent is the CMS-1500 form.</p>
+    <p>837P claims are submitted by individual providers, group practices, or medical billing companies. A patient seeing a cardiologist — that bill is an 837P.</p>
+    <h2>837I — Institutional</h2>
+    <p>837I is for institutional billing — hospitals, skilled nursing facilities, inpatient and outpatient hospital services. The paper equivalent is the UB-04. This transaction includes loops that don't exist in 837P, like UB revenue codes in the SV2 segment.</p>
+    <p>A hospital stay, an ER visit, an outpatient surgery billed by the hospital — all 837I.</p>
+    <h2>837D — Dental</h2>
+    <p>837D is for dental claims, with CDT procedure codes rather than the CPT codes used in 837P. If you're not working with a dental carrier or a plan with dental benefits, you may never touch this one.</p>
+    <div class="callout">
+      <div class="callout-label">Practical Test</div>
+      <p>Not sure which type you have? Check the GS08 element. <strong>005010X222A2</strong> = Professional. <strong>005010X223A3</strong> = Institutional. <strong>005010X224A3</strong> = Dental. That version identifier tells you exactly which implementation guide applies.</p>
+    </div>
+    <h2>Why This Gets People</h2>
+    <p>At a high level the transactions look similar — ISA/GS/ST envelope, CLM segment for the claim, NM1 loops for patient and provider. But the details diverge significantly. Mapping rules for 837P don't apply to 837I. Required elements differ. Loop structures differ.</p>
+    <p>If you build a map for one and process the other through it, you'll get 999 rejections — or worse, bad data making it through to the payer without flagging. I've seen this happen. The cleanup is not fun.</p>
+  `
+},
+
+art2: {
+  kicker:'Opinion · Jun 2025',
+  title:'Will APIs Replace EDI? Honestly, I\'m Tired of This Question',
+  lead:'I\'ve heard some version of "EDI is dying" at three different industry events. Each time, I notice the people saying it are not the ones actually processing claims at scale.',
+  meta:['Tharun Kilaru','June 2025','8 min read'],
+  tags:['FHIR','APIs','Opinion','Career','Future of EDI'],
+  content:`
+    <p>Let me be upfront: I work in EDI. Take my opinion with that in mind. But I also think the "EDI vs APIs" framing is wrong in a way that obscures what's actually happening, so let me try to give you the honest version.</p>
+    <h2>What FHIR Actually Is</h2>
+    <p>FHIR — Fast Healthcare Interoperability Resources — is a modern API standard built by HL7. REST-based, JSON or XML, genuinely developer-friendly in a way X12 is not. It's well-designed. I'm not dismissing it. But it was built to solve specific problems, and those aren't the same problems EDI was built to solve.</p>
+    <h2>What EDI Was Actually Built For</h2>
+    <p>EDI excels at one thing: high-volume, batch processing of structured transactions between known trading partners. Millions of claims. Hundreds of thousands of eligibility records. Remittance files with thousands of line items. The economics of doing that with REST APIs at scale don't work yet. And the installed base of payer adjudication systems built on X12 is enormous.</p>
+    <div class="callout">
+      <div class="callout-label">The Number Nobody Says Out Loud</div>
+      <p>The US healthcare system processes billions of X12 EDI transactions per year. The major payers are not ripping out their core systems to swap in FHIR. That infrastructure represents decades of investment.</p>
+    </div>
+    <h2>Where FHIR Is Actually Winning</h2>
+    <p>Patient access. CMS interoperability rules require payers to expose member data via FHIR APIs — that's real and happening. Prior authorization is moving toward FHIR. Clinical data exchange between providers is a strong use case. Notice what these have in common: real-time, lower volume, consumer-facing or provider-to-payer. That's the lane FHIR was designed for.</p>
+    <h2>My Actual Conclusion</h2>
+    <p>EDI and FHIR will coexist for longer than anyone predicting "EDI is dead" expects. The smarter play is to learn both. Not to hedge bets, but because the workflows emerging over the next decade will involve both. I'm actively learning FHIR — not because EDI is going away, but because understanding the difference is how you understand healthcare interoperability clearly.</p>
+  `
+},
+
+art3: {
+  kicker:'Production · Oct 2025',
+  title:'How I Cut EDI Incident Resolution Time by 30% at UHG',
+  lead:'There was a Monday morning in early 2023 where I got pulled into an incident call at 7am because a batch of 837s had been silently failing for twelve hours. That morning is what made me fix our monitoring.',
+  meta:['Tharun Kilaru','October 2025','7 min read'],
+  tags:['Production','Monitoring','Cleo CIC','UHG','837'],
+  content:`
+    <p>The incident wasn't dramatic. No system went down. A batch of 837Ps that should have been picked up by the clearinghouse hadn't been — and because our monitoring was essentially "wait for someone to notice," nobody noticed for half a working day. Delayed payments, claims that missed filing deadlines, a lot of manual backfill.</p>
+    <h2>The Real Problem: Passive Monitoring</h2>
+    <p>Our "monitoring" meant checking a dashboard periodically and waiting for 999 acknowledgements. The problem is obvious in retrospect: it's reactive. By the time you know something's wrong, the damage is done. You need to know within minutes, not hours.</p>
+    <h2>What I Built</h2>
+    <p>I set up active alerting on three things within Cleo CIC: file pickup confirmation (did the clearinghouse actually retrieve the file?), 999 acknowledgement timing (if an ack hasn't come back in X hours, alert), and error log keyword filtering to surface rejection codes needing human review.</p>
+    <p>None of this was technically complex. Cleo has event trigger capabilities built in. The hard part was deciding exactly what to alert on — too many alerts and people ignore them, too few and you're back to passive monitoring.</p>
+    <div class="callout">
+      <div class="callout-label">The Rule I Use Now</div>
+      <p>Alert only on things that require a human decision within the next two hours. If it can wait for the morning stand-up, it's a log entry, not an alert. This keeps volume low enough that people actually respond.</p>
+    </div>
+    <h2>On the 30% Number</h2>
+    <p>I want to be honest: it's real, but rough. We tracked average resolution time across three months before and after. The improvement was consistently 28–32%. Most of it came from detecting problems faster — the actual fix time per incident didn't change much. But knowing sooner meant acting sooner, and that translated directly to fewer delayed claims.</p>
+  `
+},
+
+art4: {
+  kicker:'HIPAA X12 · Dec 2025',
+  title:'The Complete Guide to 834 Benefit Enrollment Files',
+  lead:'After four years of working with 834s daily — at a clearinghouse, at UHG, and now at a TPA — here is everything I wish someone had handed me on day one.',
+  meta:['Tharun Kilaru','December 2025','12 min read'],
+  tags:['834','HIPAA','Enrollment','X12','Beginner','Reference'],
+  content:`
+    <h2>What the 834 Actually Does</h2>
+    <p>The 834 Benefit Enrollment and Maintenance transaction is how employers tell insurance carriers who is enrolled in their health plan, what coverage they have, and when it starts and ends. Every hire, marriage, birth, or termination should trigger an 834 to the relevant carriers. When it doesn't — or goes with errors — that person's coverage doesn't get updated. Claims get denied.</p>
+    <h2>The Envelope Structure</h2>
+    <p>Like all X12 transactions, the 834 is wrapped in a three-layer envelope. ISA/IEA = interchange (trading partner level). GS/GE = functional group. ST/SE = individual transaction set. Each layer has a control number that must match between opening and closing segments.</p>
+    <div class="code-block">ISA*00*          *00*          *ZZ*SENDER*ZZ*RECEIVER*251201*0900*^*00501*000000047*0*P*:~
+<span class="c">~ BE = Benefit Enrollment functional identifier</span>
+GS*BE*SENDER*RECEIVER*20251201*0900*1*X*005010X220A1~
+ST*834*0001~</div>
+    <h2>The Key Loops</h2>
+    <p><strong>Loop 1000A (Sponsor):</strong> Who is sending — the employer or benefits administrator. N1 segment with qualifier "P5".</p>
+    <p><strong>Loop 1000B (Payer):</strong> Who is receiving — the insurance carrier. N1 with qualifier "IN".</p>
+    <p><strong>Loop 2000 (Member):</strong> One occurrence per member. The INS segment tells the carrier the member's relationship, maintenance type (what's changing), and maintenance reason (why).</p>
+    <p><strong>Loop 2100 (Member Name):</strong> NM1 for name, REF for SSN or member ID, DMG for date of birth.</p>
+    <p><strong>Loop 2300 (Health Coverage):</strong> One per benefit. HD segment specifies coverage type (medical, dental, vision) and level (EMP, ESP, FAM).</p>
+    <div class="callout">
+      <div class="callout-label">The INS Segment — Most Important Line in the File</div>
+      <p>INS*Y*18*021*28*A***FT — Y = subscriber, 18 = self (relationship), 021 = COBRA (benefit status), 28 = addition (maintenance type — new enrollment), A = active, FT = full time. That single segment tells the carrier almost everything about this member record.</p>
+    </div>
+    <h2>Common Mistakes That Cause Rejections</h2>
+    <p>Wrong coverage level codes (sending "EMP" when the member has a spouse enrolled). Missing DTP*357 (benefit end date) on terminations. Subscriber ID in REF*0F not matching the carrier's record. Loop 2300 HD coverage type codes mismatching the carrier's plan codes.</p>
+    <p>The termination one is particularly tricky: you need both DTP*357 on the coverage loop AND maintenance type 024 on the INS segment. One without the other gives inconsistent results depending on the carrier's validation rules. I've seen this cause silent errors that surface weeks later.</p>
+    <h2>Always Test</h2>
+    <p>Every carrier has a test environment and test trading partner ID. Use them. The 999 tells you if your structure is valid. The 824 (if the carrier sends one) tells you about business-level rejections. Never assume a 999 accept means your data is correct — it means the structure passed, not that the member records made sense.</p>
+  `
+},
+
+art5: {
+  kicker:'Automation · Mar 2026',
+  title:'How I Use RoboTask to Automate EDI File Workflows — A Real Story',
+  lead:'Manual SFTP downloads, date-stamped renames, FTP uploads — I was doing all of it by hand until about a year ago. Here\'s how I automated those workflows, what broke along the way, and what I\'d do differently starting out.',
+  meta:['Tharun Kilaru','March 2026','9 min read'],
+  tags:['RoboTask','Automation','SFTP','FTP','EDI Workflows','C#','TPA'],
+  content:`
+    <h2>The Problem Nobody Talks About</h2>
+    <p>If you work in healthcare EDI at a small shop, there's a good chance you're doing a lot manually. Not because you don't know better, but because the team is small, the automations never got built, and every week the same tasks just happen. Someone downloads the files. Someone renames them. Someone FTPs them to the client. It works — until someone is out sick, or a file lands at 11pm, or a filename gets typo'd and a downstream process breaks.</p>
+    <p>That was my situation at IBA. We're a TPA handling eligibility, claims, and reports for dozens of employer groups. The EDI side runs lean: essentially me and our Director of Operations. When a manual step breaks, there's no one else to catch it.</p>
+    <h2>What RoboTask Is</h2>
+    <p>RoboTask is a Windows automation tool — Task Scheduler with real logic. You build workflows from action blocks (download a file, rename it, run a script, send an email) and trigger them on schedules, folder events, or manually. No cloud dashboard. Just a .tsk file running on a Windows server. Unglamorous and reliable.</p>
+    <h2>Real Workflow: The Hines Medical Claim File</h2>
+    <p>One of the first automations I built was a weekly medical claim file delivery for Hines. The file had to be pulled from an internal source, renamed with the current date (their spec required HinesMedical_Claims_03142026.txt format), and uploaded to their SFTP server. Every Friday.</p>
+    <div class="callout">
+      <div class="callout-label">The Variable That Made This Easy</div>
+      <p>RoboTask has built-in date variables: {Month}, {Day}, {Year}. The rename action uses HinesMedical_Claims_{Month}{Day}{Year}.txt. Runs every Friday at 4pm, correct date every time, no human involved.</p>
+    </div>
+    <p>Three phases: pull the source file, rename it with the dynamic date stamp, SFTP upload to Hines's server. Each phase is a separate action block. If any phase fails, it logs an error and sends an alert. When it succeeds, it sends a confirmation — the client knows the file landed without manual follow-up.</p>
+    <h2>Real Workflow: Wellnecity FTP Upload (and Why It Was Failing)</h2>
+    <p>Wellnecity already had an existing RoboTask — an 834 eligibility file uploaded to their FTP server on a schedule. It kept failing silently. The task would run, report complete, and the file wouldn't be on the remote server.</p>
+    <p>Diagnosis: FTP credentials had changed months earlier, but the wrong place got updated. The task connected successfully (no connection error) but failed on the upload step in a way the old error handling wasn't catching. So it logged success. The file never arrived.</p>
+    <p>The fix: rebuilt the task with a post-upload verification step — after the upload, check that the file actually exists on the remote server before logging success. One extra action block. Now a failed upload shows up as an error instead of a false positive.</p>
+    <h2>Real Workflow: PGP Decryption Before Processing</h2>
+    <p>Some trading partners send PGP-encrypted files. For a while this was manual: receive the file, run a decryption command, move the output. One missed step and the downstream job picks up an encrypted blob.</p>
+    <p>I wrote a small C# console app — a PgpDecryptor using BouncyCastle — that takes CLI arguments: --in, --key, --out, --overwrite. RoboTask runs it via the "Run Program" action, triggered when an encrypted file lands in the watch folder. The file arrives encrypted and leaves ready to process. Totally invisible.</p>
+    <h2>The Pattern I Use for Every Automation</h2>
+    <p><strong>Acquire:</strong> get the file, confirm it exists before doing anything else. <strong>Transform:</strong> rename, decrypt, preprocess. <strong>Deliver and confirm:</strong> send the file, verify it landed, log the result, alert on failure. Every task follows this shape. New ones get faster to build because I'm filling in a template.</p>
+    <h2>What I'd Tell Someone Starting Out</h2>
+    <p>Start with the most annoying manual task you do on a fixed schedule — not the most complex, the most annoying. Get comfortable with error handling before you automate anything critical. Document your tasks — RoboTask has a notes field for each action. Use it. And remember: an automation that fails silently is often worse than no automation at all.</p>
+  `
+}
+
+};
+
+// ============================================================
+//   ROUTING
+// ============================================================
+function goTo(page) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  // Show target
+  var el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  // Update nav
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  var nb = document.getElementById('nav-' + page);
+  if (nb) nb.classList.add('active');
+  // Close mobile menu
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('ham-btn').classList.remove('open');
+  // Scroll to top
+  window.scrollTo({top:0, behavior:'auto'});
+  // Close any open article
+  if (page === 'blog') closePost();
+}
+
+// ============================================================
+//   BLOG POSTS
+// ============================================================
+function openPost(id) {
+  var post = articles[id];
+  if (!post) return;
+
+  var html = '<span class="reader-kicker">' + post.kicker + '</span>';
+  html += '<h1>' + post.title + '</h1>';
+  html += '<div class="reader-lead">' + post.lead + '</div>';
+  html += '<div class="reader-meta">';
+  post.meta.forEach(function(m, i){
+    if (i > 0) html += '<span class="dot"></span>';
+    html += '<span>' + m + '</span>';
+  });
+  html += '</div>';
+  html += post.content;
+  html += '<div class="reader-tags">';
+  post.tags.forEach(function(t){ html += '<span class="tag">' + t + '</span>'; });
+  html += '</div>';
+  html += '<div class="reader-author">';
+  html += '<div class="reader-av">TK</div>';
+  html += '<div><div class="reader-av-name">Tharun Kilaru</div>';
+  html += '<div class="reader-av-bio">Senior EDI Specialist with 4+ years in HIPAA X12, Cleo Integration Cloud, and EDI automation. Working at IBA, a TPA in Garden City, NY. Former UHG, PetSmart, APL Logistics.</div></div>';
+  html += '</div>';
+
+  document.getElementById('reader-content').innerHTML = html;
+  document.getElementById('blog-listing').style.display = 'none';
+  document.getElementById('article-reader').classList.add('open');
+  window.scrollTo({top:0, behavior:'auto'});
+
+  // Read progress
+  document.getElementById('read-progress').style.width = '0';
+}
+
+function closePost() {
+  document.getElementById('article-reader').classList.remove('open');
+  document.getElementById('article-reader').style.display = '';
+  document.getElementById('blog-listing').style.display = '';
+  document.getElementById('read-progress').style.width = '0';
+  window.scrollTo({top:0, behavior:'auto'});
+}
+
+// ============================================================
+//   MOBILE MENU
+// ============================================================
+function toggleMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var btn  = document.getElementById('ham-btn');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// Close menu on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('mobile-menu');
+  var btn  = document.getElementById('ham-btn');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+// ============================================================
+//   SCROLL EFFECTS
+// ============================================================
+window.addEventListener('scroll', function() {
+  // Navbar shadow
+  var nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+
+  // Read progress
+  var reader = document.getElementById('article-reader');
+  if (reader && reader.classList.contains('open')) {
+    var scrolled = window.scrollY;
+    var total    = document.body.scrollHeight - window.innerHeight;
+    var pct      = total > 0 ? Math.min((scrolled / total) * 100, 100) : 0;
+    document.getElementById('read-progress').style.width = pct + '%';
+  }
+});
+
+// ============================================================
+//   CONTACT FORM
+// ============================================================
+function submitForm() {
+  var name    = document.getElementById('form-name').value.trim();
+  var email   = document.getElementById('form-email').value.trim();
+  var subject = document.getElementById('form-subject').value.trim();
+  var msg     = document.getElementById('form-msg').value.trim();
+
+  if (!name || !email || !msg) {
+    alert('Please fill in your name, email, and message.');
+    return;
+  }
+
+  var mailto = 'mailto:kilarutharun@gmail.com'
+    + '?subject=' + encodeURIComponent(subject || 'Message from ' + name)
+    + '&body=' + encodeURIComponent('Hi Tharun,\n\n' + msg + '\n\n— ' + name + '\n' + email);
+
+  window.location.href = mailto;
+
+  document.getElementById('form-success').classList.add('show');
+  document.getElementById('form-name').value = '';
+  document.getElementById('form-email').value = '';
+  document.getElementById('form-subject').value = '';
+  document.getElementById('form-msg').value = '';
+}
+</script>
+
+</body>
+</html>
